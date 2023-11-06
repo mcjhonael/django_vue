@@ -1,0 +1,189 @@
+-- Esta la forma de renderizar datos declarativos al dom
+{{producto}}
+ Los datos y el DOM ahora están vinculados y ahora todo es reactivo . 
+gbuto que está viendo se llama directiva. Las directivas tienen el prefijo v-para indicar que son atributos especiales proporcionados por Vue y, como puede haber adivinado, aplican un comportamiento reactivo especial al DOM renderizado. 
+
+ -- Tenga cuenta quen e en este método actualizamos el estado de nuestra aplicación sin tocar el DOM: todas las manipulaciones del DOM son manejadas por Vue y el código que escribe se centra en la lógica subyacente.
+
+ -- Vue también proporciona la v-model directiva que hace que el enlace bidireccional entre la entrada del formulario y el estado de la aplicación sea muy sencillo:
+
+ -- El sistema de componentes es otro concepto importante en Vue, porque es una abstracción que nos permite crear aplicaciones a gran escala compuestas por componentes pequeños, autónomos y, a menudo, reutilizables. Si lo pensamos bien, casi cualquier tipo de interfaz de aplicación se puede abstraer en un árbol de componentes:
+
+ --En Vue, un componente es esencialmente una instancia de Vue con opciones predefinidas. Registrar un componente en Vue es sencillo:
+
+ -- v-bind se usa para enlazar dinamicamente uno o mas atributos o una propiedad de un componente a una expresion
+
+ -- En lugar de una propiedad computada, podemos definir la misma función como un método en su lugar. Para el resultado final, los dos enfoques son exactamente los mismos. Sin embargo, la diferencia es que las propiedades computadas se almacenan en caché según sus dependencias. Una propiedad computada solo se volverá a evaluar cuando alguna de sus dependencias haya cambiado. Esto significa que mientras message no haya cambiado, el acceso múltiple a la propiedad computada de reverseMessage regresará inmediatamente el resultado previamente calculado sin tener que ejecutar la función de nuevo.
+
+ -- Esto también significa que la siguiente propiedad computada nunca se actualizará, porque Date.now() no es una dependencia reactiva:
+ -- En comparación, una invocación de método siempre ejecutará la función cada vez que ocurre una re-renderizacion.
+
+¿Por qué necesitamos caché? Imagina que tenemos una costosa propiedad computada A, que requiere hacer un bucle a través de una gran matriz y hace muchos cálculos. Entonces podemos tener otras propiedades computadas que a su vez dependen de A. Sin caché, estaríamos ejecutando el captador de A muchas veces más de lo necesario. En los casos en que no desee el almacenamiento en caché, utilice un método en su lugar.
+
+otro tema:
+
+-- Una necesidad común de data binding es manipular la lista de clases de un elemento y sus estilos en línea. Como ambos son atributos, podemos usar v-bind para manejarlos: 
+
+
+listos para aprender vue.js desde cero parte 2 vamos!!! tu puedes de
+
+-- la gran diferencia entre el v-show y el v-if es que el 1 solo deshabilita el elementoy sirve para hacer evaluaciones y el 2do lo remueve del dom 
+<span v-if="changePercent > 0">✌</span>
+        <span v-else-if="changePercent < 0">zerou</span>
+        <span v-else>😢</span>
+
+        <span v-show="changePercent>0" >✌</span>
+        <span v-show="changePercent<0" >zerou</span>
+        <span v-show="changePercent===0" >😢</span>
+-- si el elemento cambia constantemente usa el v-show xk usa estilos y lo deshabilita por quese ara mejor mutaciones en el dom 
+-- v-if si solo es una condiciones que no va cambiar mucho en un project
+
+-- usamos las variables para poder mostrar un bloque o no por lo que se ve
+-- los methods mas que todo se usa para utilizar los eventos
+-- dentro de una clase podemos aplicar condicionales 
+      <h1 :class="changePercent > 0 ? 'green' : 'red' ">
+la magia es que podemos conbinar las clases por defecto y las clases dinamicas cuando sea necesario
+       <li
+          v-for="(dia,i) in pricesWithDays"
+          :class="{orange:dia.value === prices , red:dia.value<prices , green:dia.value>prices}"
+          class="upperCase"
+        >
+-- las prop conputadas surgen de otras variables y dan a conocer y crear nuevas variables funciones que devuelven un valor deacuedo a una accion
+-- los watchers funciones que ejecutan un codigo cuando cambie una variables va a ejecutar un codigo o disparar una function recuerda que el name de watch debe ser el mismo nombre de la funcion que tiene que ser el mismo nombre de una variable de data
+-- los watch podemos usar cuando nos damos cuenta que el precio del bitcoin a cambiado entonces podemos mandar una notificacion 
+-- computed podemos usarlo para calcular el precio del bitcoin
+-- v-model => nos permite linkear lo que escribe el usuario en el formulario con las propiedades que tenemos en el data. cuando cambio la vista atravez de las interacciones con el usuario se refresque el codigo y cada vez que refresco el codigo tambien se actualiza la vista
+-- two-way data binding sirve para manipular la informacion que escribe el user en tiempo real
+-- un tags es esto <counter></counter> 
+
+
+
+vue CLI =>es una herramienta que nos permite generar la estructura de un proyecto en vue js tambien reduce el tiempo de configuracion y tener el proyecto listo para trabajar solo correr un comando y ya correr el programa.
+
+-- instalamos de manera global el vue cli 
+npm install -g @vue/cli
+yarn global add @vue/cli
+
+-- creamos un proyecto
+
+vue create my-project
+vue ui
+-- el vue cli nos permite crear una version en modo dev y otro en modo desarrollo
+todo esto es con npm run y script
+  "scripts": {
+    "serve": "vue-cli-service serve", // para servir el servidor correr el run
+    "build": "vue-cli-service build", //genera nuestro codigo productivo que es entendible por el navegador apartir de toda nuestra configuracion local / compilar para produccion
+    "lint": "vue-cli-service lint" //encuentra errores de linteo
+  },
+npm i -g serve nos permite crear un servidor en nuestra compu para chekear que este funcionando todo en nuestra carpeta dist en base a lo que nosotros venimos programando
+serve -s dist
+este comando permite de la misma manera servir los archivos pero no en vue si no en js css img 
+-- esto quiere decir que el vue cli atravez de webpack esta generando todo el codigo productivo aprtir de todo el codigo que tengo dentro de mi directorio src de vue informacion que puede ser entendble por el navegador o browser 
+vue ui interfaz de vue para visualizar todos los proyectos de vue 
+
+
+
+trabjar en nuestro projecto 
+tailwind css = su fuere clases de utilidades osea construccion de todos nuestros estilos con solo clases
+
+vue add es un comando del cli que nos permite agregar plugins dento de nuestro proyecto
+vue add @ianaya89/tailwind
+
+import "@/assets/css/tailwind.css"
+no le colocamos ningun nombre qe solo keremos que se incluya el archivo css
+@ es cuan referencia de manera relativa del directorio src osea que es decir src/ algo asi que si movemos nuestro import a cualquier archivo entonces no se necesita que debemos modificar la ruta xk espeficia que es el directorio src
+
+
+props: {
+    assets: {
+      type: Array,
+      default: () => []
+    }
+  }
+
+  valores por defecto de un array y objeto siempre es una funcion asi si fuera un objet seria ()=>{}si fuera bol se coloca true o false si fuera cadena string 
+
+  revisar cambio de nomeclatura pascalcase a kivacase
+
+  Main.js es el archivo padre de todo donde renderiza a App.vue 
+  es en main donde se coloca e importa la libreria de estilos ya sea bootstrap o lo que sea
+
+  App.vue es el que se renderiza por lo cual alli es donde se arma todo
+   se jala componentes especiales para su desarrollo y asi
+
+
+   ahora a usar vue Router es una libreria 
+   para instalarlo npm i -S vue-router
+   creamos un archivo para las diferentes rutas con extension .js
+
+   Vue.use(Router) para utilizar los diferentes plugins o utilidades que tiene la libreria
+
+   para formatear numeros 
+   npm i -s numeral
+
+   lo famosos filtro sirven para poder brindar una mejor experiencia de usuario solo modifica el diseno frontal mas no es de la raiz
+
+   rutas dinamicas en vue
+   
+
+
+
+
+   navegar automaticamente por las rutas 
+   to="/" podemosd decirle asi con el path o si no 
+   :to="{name:'home'}" con el nombre de la ruta y con la directiva v-bind
+
+   cambiar las rutas atravez de una forma programatica
+
+
+
+   agregando componentes externos a nuestro proyecto
+   $ npm i -s @saeris/vue-spinner vue-chartkick
+   https://github.com/Saeris/vue-spinners
+   https://github.com/ankane/vue-chartkick usar la version actualizada
+
+   utilizar para graficos desolo use chart.js versión 2.9 y vue-chartkick 0.6.1
+   npm install vue-chartkick@0.6.1 chart.js@2.9 --save
+   en estas versiones que son mas comodas y facil 
+   import {Chart} from 'chart.js'
+import Chartkick from 'vue-chartkick'
+Vue.use(Chartkick.use(Chart));
+
+
+problemas de reactividad
+
+aqui mismo estamos agregando un nuevo atributo obtenido de la url pero que pasa vue no lo reconoce por ser nuevo vue no puede encontrar que esa propiedad existe dentro de su sistema de reactividad por qu fue agregado despues que k el objeto fue creado
+1 se creo el objeto con todas sus propiedades y luego se add la prop url no esta crakeada pror vue entonces la vista no es posible detectarlo solucion mas abajo
+    getWebSite(exchange) {
+      getExchange(exchange.exchangeId).then(
+        (res) => (exchange.url=res.exchangeUrl)
+      );
+    },
+
+    
+
+-- RECUERDA MARICONSITO ASEGURA CON LA RUTAS DE LAS API REVISALO
+-- RECUERDA INSTALAR LAS VERSIONES CORRECTAS DE LAS DEPENDENCIAS
+
+
+
+
+
+setting lo separa en 3 base/local/prod alli lo usamos
+python manage.py // lista de opciones para hacer
+en el file manage.py  colocar blog_api.seting modificar tbm wsgi este se utilizar cuando se levantar en modo production asi se usa
+
+__init__.py para que indique que en esa carpeta va ver codigo python asi hay qe colocar as
+blog y blog/api
+serializer no dice obtener todos los datos
+el modelo se convierte en objeto json que es serializer
+
+dedl modelo ---> objeto jsn(serializador) ---> vista
+
+
+
+
+
+onBeforeMount // antes que se carge la paginado
+onMounted //cuando el component ya se renderizo
+onBeforeUpdate// ants que se actualize 

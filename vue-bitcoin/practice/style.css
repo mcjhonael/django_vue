@@ -1,0 +1,19 @@
+.red {
+  color: red;
+  /* background-color: aqua; */
+}
+
+.green {
+  color: green;
+  /* background-color: aqua; */
+}
+
+/* .fondo {
+  background-color: red;
+} */
+.orange {
+  color: orange;
+}
+.upperCase {
+  text-transform: uppercase;
+}

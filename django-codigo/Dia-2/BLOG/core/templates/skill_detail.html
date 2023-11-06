@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+  <div class="row ">
+    <div class="col-6">
+      <div class="card shadow mt-4 mb-4" >
+          <img class="card-img-top " src={{skill.imagen}}  alt="Card de imagen">
+        <div class="card-body">
+          <h5 class="card-title">{{skill.skill}}</h5>
+          <p class="card-text">{{skill.descripcion}}</p>
+          <a href="{% url 'core:home' %}" class="btn btn-primary">Atraz</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
